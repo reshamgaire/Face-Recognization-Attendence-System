@@ -11,7 +11,7 @@ from os.path import exists
 date = datetime.today().date()
 
 
-class FacialAttendence(tk.Tk):
+class Application(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
         self.title("Face Recognition Attendence System")
@@ -90,7 +90,7 @@ class AddStudent(tk.Frame):
         self.master = master
         self.pack(fill="both", expand=True)
         self.student_file = student_file
-        self.student_faces = []
+        self.student_face = ()
         self.face = ()
         self.create_widgets()
 
@@ -166,10 +166,8 @@ class AddStudent(tk.Frame):
 
     def capture_image(self):
         if len(self.face) != 0:
-            self.student_faces.append(self.face)
-            self.camera_issue_label["text"] = (
-                f"Captured {len(self.student_faces)} faces!"
-            )
+            self.student_face = self.face
+            self.camera_issue_label["text"] = "Face captured!"
             self.camera_issue_label.pack()
         else:
             self.camera_issue_label["text"] = "Face not found yet!"
@@ -187,16 +185,15 @@ class AddStudent(tk.Frame):
             self.form_issue_label["text"] = f"Id {id} is already taken!"
             self.form_issue_label.pack()
 
-        elif len(self.student_faces) == 0:
+        elif len(self.student_face) == 0:
             self.form_issue_label["text"] = "Face has not captured yet!"
             self.form_issue_label.pack()
 
         elif name and id:
-            for face in self.student_faces:
-                imgs, loc = face
-                faceEncodings = face_recognition.face_encodings(imgs, [loc])[0]
-                row = [id, name, *faceEncodings]
-                self.store_to_csv([row])
+            imgs, loc = self.student_face
+            faceEncodings = face_recognition.face_encodings(imgs, [loc])[0]
+            row = [id, name, *faceEncodings]
+            self.store_to_csv([row])
             self.form_issue_label["text"] = "Student added successfully."
             self.form_issue_label.pack()
         else:
@@ -277,7 +274,7 @@ class TakeAttendence(tk.Frame):
                 np.sum((self.student_encodings - np.array([encodeFace])) ** 2, axis=1)
             )
             matchIndex = np.argmin(faceDis)
-            if faceDis[matchIndex] < 0.5:
+            if faceDis[matchIndex] < 0.4:
                 name = self.student_names[matchIndex].split(" ")[0]
                 y1, x2, y2, x1 = faceLoc
                 y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
@@ -398,5 +395,5 @@ class CSVViewer(tk.Frame):
 
 
 if __name__ == "__main__":
-    app = FacialAttendence()
+    app = Application()
     app.mainloop()
