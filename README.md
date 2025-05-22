@@ -110,13 +110,4 @@ This project relies on the following Python libraries:
 
 ## Screenshots
 
-The application's user interface is straightforward. Key visual elements and workflow can be understood from the images used for the main navigation buttons:
-
-*   **Adding a Student:** (Illustrative image: `data/images/add student.jpg`)
-    *   Shows the interface for capturing a student's face and inputting their details.
-*   **Taking Attendance:** (Illustrative image: `data/images/take attendence.jpg`)
-    *   Depicts the real-time camera feed where faces are detected for attendance.
-*   **Viewing Attendance:** (Illustrative image: `data/images/display attendence.jpg`)
-    *   Represents how the attendance report might be displayed.
-
-You can find these images in the `data/images/` directory.
+The application's user interface is straightforward. Key visual elements and workflow can be understood from the images used for the main navigation buttons.
