@@ -110,4 +110,4 @@ This project relies on the following Python libraries:
 
 ## Screenshots
 
-The application's user interface is straightforward. Key visual elements and workflow can be understood from the images used for the main navigation buttons.
+The application's user interface is straightforward. Key visual elements and workflow can be understood easily from the main navigation buttons.
