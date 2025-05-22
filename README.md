@@ -63,7 +63,7 @@ This project relies on the following Python libraries:
 1.  **Clone the repository (if applicable):**
     ```bash
     git clone https://github.com/reshamgaire/Face-Recognization-Attendence-System.git
-    cd https://github.com/reshamgaire/Face-Recognization-Attendence-System.git
+    cd Face-Recognization-Attendence-System
     ```
 
 2.  **Install Dependencies:**
